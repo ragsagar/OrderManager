@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'food',
     'tastypie',
+    'rest',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -156,3 +157,5 @@ LOGGING = {
         },
     }
 }
+
+APPEND_SLASH = True
