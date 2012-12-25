@@ -7,7 +7,7 @@
 
 <body>
 
-<div id="header"><span class="title">Backbone Cellar</span></div>
+    <div id="header"><h1>Food Menu</h1></div>
 
 <div id="sidebar"></div>
 
@@ -19,8 +19,12 @@ This is a sample application part of of three-part tutorial showing how to build
 </div>
 
 <!-- Templates -->
+<script type="text/template" id="food-header">
+    <span class="title">Food Cellar</span>
+    <button class="new">New Food Item</button>
+</script>
 <script type="text/template" id="food-item">
-	<a href='#food/<%= id %>'><%= name %></a>
+	<a href='#<%= id %>'><%= name %></a>
 </script>
 
 <script type="text/template" id="food-item-detail">
@@ -31,6 +35,8 @@ This is a sample application part of of three-part tutorial showing how to build
         <input type="text" id="name" name="name" value="<%= name %>" required/>
         <label>Price:</label>
         <input type="text" id="price" name="price" value="<%= price %>"/>
+        <button class="save">Save</button>
+        <button class="delete">Delete</button>
     </div>
 </script>
 
