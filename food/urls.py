@@ -8,4 +8,7 @@ urlpatterns = patterns('',
                 (r'^api$', 'food.views.food_api'),
                 (r'^api/(?P<food_id>\d{1,2})$',
                   'food.views.get_or_put_food'),
+                (r'^order$', 'food.views.list_orders'),
+                (r'^order/(?P<order_id>\d{1,2})$', 
+                  'food.views.get_or_put_order'),
                 )

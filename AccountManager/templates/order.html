@@ -7,21 +7,31 @@
 
 <body>
 
-    <div id="header"><h1>Food Menu</h1></div>
+    <div id="header"><h1>Order</h1></div>
 
-<div id="sidebar"></div>
+<!--<div id="sidebar"></div>-->
 
 <div id="content">
-<h2>Welcome to Backbone Cellar</h2>
-<p>
-This is a sample application part of of three-part tutorial showing how to build a CRUD application with Backbone.js.
-</p>
 </div>
 
 <!-- Templates -->
+<script type="text/template" id="row-content">
+    <div class ="table-main">
+        <td><%= name %></td>
+        <td><%= amount %></td>
+        <button class="delete">Delete</button>
+    </div>
+</script>
+<script type="text/template" id="food-header">
+    <span class="title">Food Cellar</span>
+    <button class="new">New Food Item</button>
+</script>
 <script type="text/template" id="order-header">
-    <span class="title">Add your orders</span>
-<button class="add">Add</button>
+    <label>Name</label>
+    <input type="text" id="name" required/>
+    <label>Price:</label>
+    <input type="text" id="amount" required/>
+    <button class="add">Add</button>
 </script>
 <script type="text/template" id="food-item">
 	<a href='#<%= id %>'><%= name %></a>
@@ -44,7 +54,7 @@ This is a sample application part of of three-part tutorial showing how to build
 <script src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
 <script src="{{ STATIC_URL }}js/underscore-min.js"></script>
 <script src="{{ STATIC_URL }}js/backbone-min.js"></script>
-<script src="{{ STATIC_URL }}js/app.js"></script>   
+<script src="{{ STATIC_URL }}js/order.js"></script>   
 
 </body>
 </html>

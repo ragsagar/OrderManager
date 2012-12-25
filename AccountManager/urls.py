@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'food.views.index', name='home'),
+    url(r'^order$', 'food.views.order', name='order_home'),
     url(r'^food/', include('food.urls')),
 )

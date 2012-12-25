@@ -22,4 +22,10 @@ class Order(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=50)
     amount = models.IntegerField()
+
+    def __unicode__(self):
+        """
+        Provides object specific data.
+        """
+        return "%s %s" % (self.name, self.amount)
     
