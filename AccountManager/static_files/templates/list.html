@@ -9,7 +9,7 @@
     <div ng-class="{error: newForm.site.$invalid}">
         <input type="text" name="price" ng-model="order.amount" placeholder="Price" required>
     </div>
-    <div class="btn btn-primary"><i ng-click="add()" ng-disabled="newForm.$invalid" class="icon-plus"></i></div>
+    <button ng-click="add()" ng-disabled="newForm.$invalid" class="btn btn-primary"><i class="icon-plus"></i></button>
 </fieldset>
 </form>
 </div>
@@ -28,9 +28,15 @@
     </thead>
     <tbody>
         <tr ng-repeat="order in orders | filter:query">
-            <td>{{ order.name }}</td>
+                <td>
+                    <label ng-dblclick="editName(order)" ng-hide='order.edit'>{{ order.name }}</label>
+                    <form ng-submit="doneEditing(order)" ng-show='order.edit'>
+                    <input ng-show='order.edit' ng-model="order.name" order-blur='doneEditing(todo)'>
+                    <button ng-click="doneEditing(order)" class='btn'><i class="icon-ok-circle"></i></button>
+                    </form>
+                </td>
             <td>{{ order.amount }}</td>
-            <td><div class="btn btn-danger btn-mini"><i class="icon-remove" ng-click='destroy($index)'></i></div></td>
+            <td><button ng-click='destroy($index)' class="btn btn-danger btn-mini"><i class="icon-remove"></i></div></td>
         </tr>
         <!--<tr>-->
             <!--<td style="display:{{ display() }}">{{ order.name }}</td>-->

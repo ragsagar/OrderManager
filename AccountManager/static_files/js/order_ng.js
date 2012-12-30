@@ -31,6 +31,23 @@ function ListCtrl($scope, Order) {
         $scope.orders.splice(index, 1);
         //console.log($scope.orders);
     }
+    $scope.editName = function(order) {
+        $scope.oldname = order.edit;
+        order.edit = true;
+    }
+
+    $scope.doneEditing = function(order) {
+        console.log('done editing')
+        if (order.name == null) {
+            order.name = $scope.oldname;
+            $scope.oldname = '';
+            return
+        }
+        order.edit = false;
+        if(order.name != $scope.oldname) {
+            order.update();
+        }
+    }
     
 }
 
