@@ -81,7 +81,7 @@ def list_orders(request):
         amount = int(data['amount'])
         print name, amount
         obj = Order.objects.create(name=name, amount=amount)
-        data = {'id': obj.id}
+        data = model_to_dict(obj)
         response = HttpResponse(json.dumps(data), content_type='application/json')
         response.status_code = 201
         return response
@@ -107,7 +107,10 @@ def get_or_put_order(request, order_id):
         print "Unknown object id"
         return response
     if request.method == 'PUT':
-        data = eval(request.raw_post_data.replace('null', 'None'))
+        raw_data = request.raw_post_data.replace('null', 'None')
+        raw_data = raw_data.replace('false', 'False')
+        raw_data = raw_data.replace('true', 'True')
+        data = eval(raw_data)
         food_item.name = data['name']
         food_item.amount = data['amount']
         food_item.save()
