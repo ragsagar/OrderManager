@@ -1,4 +1,5 @@
 import json
+import backbone
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.forms.models import model_to_dict
@@ -80,7 +81,8 @@ def list_orders(request):
         amount = int(data['amount'])
         print name, amount
         obj = Order.objects.create(name=name, amount=amount)
-        response = HttpResponse()
+        data = {'id': obj.id}
+        response = HttpResponse(json.dumps(data), content_type='application/json')
         response.status_code = 201
         return response
     else:
@@ -120,3 +122,17 @@ def get_or_put_order(request, order_id):
     else:
         values = json.dumps(model_to_dict(food_item))
         return HttpResponse(values, content_type='application/json')
+
+
+def order_ng(request):
+    """
+    Show the order table.
+    """
+    return render(request, 'order_ng.html')
+
+#class OrderView(backbone.views.BackboneAPIView):
+    #model = Order
+    #display_fields = ('name', 'amount')
+    #ordering = ('timestamp',)
+
+#backbone.site.register(OrderView)

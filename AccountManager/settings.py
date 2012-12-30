@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'food',
     'tastypie',
     'rest',
+    'backbone',
 )
 
 # A sample logging configuration. The only tangible logging

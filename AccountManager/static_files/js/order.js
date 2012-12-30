@@ -17,6 +17,7 @@ window.TableView = Backbone.View.extend({
     
     initialize: function(){
         this.model.bind("reset", this.render, this);
+        //this.model.bind("destroy", this.render, this);
         var self = this;
         this.model.bind("add", function(order) {
             $(self.el).append(new TableRowView({model: order}).render().el);
@@ -27,6 +28,12 @@ window.TableView = Backbone.View.extend({
         _.each(this.model.models, function(order){
             $(this.el).append(new TableRowView({model: order}).render().el);
         }, this);
+        return this;
+    },
+    
+    reset: function(eventName){
+        $(this.el).html('');
+        this.render();
         return this;
     }
 }
@@ -71,12 +78,14 @@ window.TableRowView = Backbone.View.extend({
     //},
 
     deleteOrder: function(){
-        console.log("Delete signal");
-        console.log(this.model);
-        this.model.destroy();
-        this.close();
+        //console.log("Delete signal");
         //console.log(this.model);
-        //this.close();
+        app.orders.remove(this.model);
+        this.model.destroy();
+        //app.show();
+        //app.orders.trigger('reset');
+        //console.log(this.model);
+        this.close();
         return false;
     }
 });
@@ -101,12 +110,14 @@ window.HeaderView = Backbone.View.extend({
 
     addNewOrder: function(event) {
         if(!$('#name').val().trim() && !$('#amount').val().trim()) return;
-        newmodel = new Order()
-        newmodel.set({
+        newrow = new TableRowView({model: new Order()});
+        //newmodel = new Order()
+        newrow.model.set({
             name: $('#name').val(),
             amount : $('#amount').val()
         })
-        app.orders.create(newmodel);
+        //newrow.model.save();
+        app.orders.create(newrow.model);
         $('#name').val('');
         $('#amount').val('');
         }})

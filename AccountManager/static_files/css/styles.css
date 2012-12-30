@@ -30,6 +30,10 @@
     float: left;
 }
 
+.search {
+    padding-left: 250px;
+}
+
 .form-right-col {
 }
 
@@ -82,14 +86,19 @@ label {
 
 button {
     padding: 6px;
+    color: blue;
 }
 
 table, td, th
 {
-border: 1px solid green;
+border: 1px solid blue;
 }
 th
 {
-background-color: green;
+background-color: blue;
 color: white;
+}
+td
+{
+color: blue;
 }
