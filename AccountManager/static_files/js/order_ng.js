@@ -52,6 +52,15 @@ function ListCtrl($scope, Order) {
         }
         order.oldname = ''
     }
+
+    $scope.getTotal = function(order) {
+        total = 0;
+        angular.forEach($scope.orders, function(order) {
+            total += order.amount;
+        });
+        return total;
+    }
+
     
 }
 

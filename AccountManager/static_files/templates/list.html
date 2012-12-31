@@ -7,7 +7,7 @@
         <input type="text" name="name" ng-model="order.name" placeholder="Name" required>
     </div>
     <div ng-class="{error: newForm.amount.$invalid}">
-        <input type="text" name="amount" ng-model="order.amount" placeholder="Amount" required>
+        <input type="integer" name="amount" ng-model="order.amount" placeholder="Amount" required>
     </div>
     <button ng-click="add()" ng-disabled="newForm.$invalid" class="btn btn-primary"><i class="icon-plus"></i></button>
 </fieldset>
@@ -38,11 +38,8 @@
             <td>{{ order.amount }}</td>
             <td><button ng-click='destroy($index)' class="btn btn-danger btn-mini"><i class="icon-remove"></i></div></td>
         </tr>
-        <!--<tr>-->
-            <!--<td style="display:{{ display() }}">{{ order.name }}</td>-->
-            <!--<td>{{ order.amount }}</td>-->
-        <!--</tr>-->
     </tbody>
 </table>
+<label>Total: {{ getTotal() }}</label>
 </div>
 
