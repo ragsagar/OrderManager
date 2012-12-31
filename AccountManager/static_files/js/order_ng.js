@@ -8,62 +8,49 @@ angular.module('order_ng', ['backend']).
 
 
 function ListCtrl($scope, Order) {
+    // Fetch the list of items from backend
     $scope.orders = Order.query();
+
     $scope.add = function() {
-        //Order.save($scope.order);
-        //$scope.orders.push($scope.order)
-        console.log($scope.order.id)
+        // $scope.order will be having the value in input field. it has two way
+        // binding. So directly clearing value in $scope.order will clear the
+        // value in input field.
         newitem = angular.copy($scope.order)
+        // Following will give a push request.
         Order.save(newitem);
-        //$scope.orders.push({name: $scope.order.name, amount: $scope.order.amount});
+        // Adding the new element to `orders` array so it will be displayed to
+        // the user in realtime
         $scope.orders.push(newitem);
+        // Clear input field
         $scope.order.name = '';
         $scope.order.amount = '';
     }
+
     $scope.destroy = function(index) {
-        //console.log(index);
         item = $scope.orders[index];
-        console.log(item);
-        //$http.delete(item.self).then(function (){
-            //$scope.orders.splice(index, 1); });
-        //item.destroy();
+        // Give delete request to backend
         Order.remove({id: item.id});
+        // Remove the item from array so that user can see the change.
         $scope.orders.splice(index, 1);
-        //console.log($scope.orders);
     }
+
     $scope.editName = function(order) {
-        $scope.oldname = order.edit;
-        order.edit = true;
+        order.oldname = order.name; // Backingup the existing data
+        order.edit = true; // Display input field
     }
 
     $scope.doneEditing = function(order) {
-        console.log('done editing')
-        if (order.name == null) {
-            order.name = $scope.oldname;
-            $scope.oldname = '';
-            return
-        }
+        // setting order.edit to false will hide the input field
         order.edit = false;
-        if(order.name != $scope.oldname) {
+        if (order.name == '') {
+            // if no data is entered then reset back to old data
+            order.name = order.oldname;
+        }
+        else if(order.name != order.oldname) {
             order.update();
         }
+        order.oldname = ''
     }
     
 }
-
-//function CreateCtrl($scope, $location, Order) {
-    //$scope.add = function() {
-    //Order.save($scope.order, function(order) {
-        //$location.path('/');
-    //});
-    //}
-//}
-
-//function DeleteCtrl($scope, $location, $routerParams, Order) {
-    //Order.get({id: $routerParams.orderid}, function(order) {
-        //order.destroy(function() {
-            //$location.path('/');
-        //});
-    //});
-//}
 

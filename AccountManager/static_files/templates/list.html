@@ -30,10 +30,10 @@
         <tr ng-repeat="order in orders | filter:query">
                 <td>
                     <label ng-dblclick="editName(order)" ng-hide='order.edit'>{{ order.name }}</label>
-                    <form ng-submit="doneEditing(order)" ng-show='order.edit'>
+                    <div ng-show='order.edit'>
                     <input ng-show='order.edit' ng-model="order.name" order-blur='doneEditing(todo)'>
                     <button ng-click="doneEditing(order)" class='btn'><i class="icon-ok-circle"></i></button>
-                    </form>
+                    </div>
                 </td>
             <td>{{ order.amount }}</td>
             <td><button ng-click='destroy($index)' class="btn btn-danger btn-mini"><i class="icon-remove"></i></div></td>
