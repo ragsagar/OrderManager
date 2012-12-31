@@ -6,8 +6,8 @@
     <div ng-class="{error: newForm.name.$invalid}">
         <input type="text" name="name" ng-model="order.name" placeholder="Name" required>
     </div>
-    <div ng-class="{error: newForm.site.$invalid}">
-        <input type="text" name="price" ng-model="order.amount" placeholder="Price" required>
+    <div ng-class="{error: newForm.amount.$invalid}">
+        <input type="text" name="amount" ng-model="order.amount" placeholder="Amount" required>
     </div>
     <button ng-click="add()" ng-disabled="newForm.$invalid" class="btn btn-primary"><i class="icon-plus"></i></button>
 </fieldset>
@@ -22,7 +22,7 @@
     <thead>
         <tr>
             <th>Food</th>
-            <th>Price</th>
+            <th>Amount</th>
             <th>Action</th>
         </tr>
     </thead>

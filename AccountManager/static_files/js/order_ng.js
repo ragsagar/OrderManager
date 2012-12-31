@@ -47,6 +47,7 @@ function ListCtrl($scope, Order) {
             order.name = order.oldname;
         }
         else if(order.name != order.oldname) {
+            // Gives a put request to the backend
             order.update();
         }
         order.oldname = ''
